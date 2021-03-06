@@ -136,6 +136,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TipsAdminController.cs" />
+    <Compile Include="Database\DatabaseInitializer.cs" />
     <Compile Include="Database\InitialValues.cs" />
     <Compile Include="BookmakerContext\BookmakerDbContext.cs" />
     <Compile Include="Global.asax.cs">

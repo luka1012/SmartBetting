@@ -124,5 +124,12 @@ namespace BookmakersApplication.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult AvailableTips()
+        {
+            var tips = db.Tips.Where(t => t.Status == Status.Available).ToList();
+
+            return View("Index", tips); 
+        }
     }
 }

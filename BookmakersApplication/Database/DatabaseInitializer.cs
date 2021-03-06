@@ -2,14 +2,17 @@
 using BookmakersApplication.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
 namespace BookmakersApplication.Database
 {
-    public class InitialValues
+    public class DatabaseInitializer : CreateDatabaseIfNotExists<BookmakerDbContext>
     {
-        public static void Initialize(BookmakerDbContext dbContext) {
+        protected override void Seed(BookmakerDbContext dbContext)
+        {
+            base.Seed(dbContext);
             IList<Models.Tip> currentOffers = new List<Tip> {
              new Tip(){ Pair= "Chelsea-Manchester",TipId=1, IsTopOffer=false, Quota1=1.5,Quota1X=1.3, QuotaX=4, QuotaX2=1.8, Quota2=2.5, Sport="Nogome" },
                 new Tip() {Pair= "Dinamo-Hajduk",TipId=2, IsTopOffer=true, Quota1=1.3,Quota1X=1.15, QuotaX=4, QuotaX2=2.8, Quota2=5,Sport="Nogomet" } ,
@@ -21,13 +24,13 @@ namespace BookmakersApplication.Database
             };
             dbContext.Tips.AddRange(currentOffers);
             dbContext.SaveChanges();
-            
+
 
             IList<Models.Wallet> currentWallet = new List<Wallet> {
                 new Wallet(){id=1, Amount=45,Owner="Marko Marković" },
                 new Wallet(){id=2, Amount=25,Owner="Ante Petrić" },
                 new Wallet(){id=3, Amount=50,Owner="Marko Perković" }
-                
+
             };
             dbContext.Wallets.AddRange(currentWallet);
             dbContext.SaveChanges();

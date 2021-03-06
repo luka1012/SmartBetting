@@ -32,20 +32,7 @@ namespace BookmakersApplication.Controllers
             return View();
         }
 
-        protected override void Initialize(RequestContext requestContext)
-        {
-            base.Initialize(requestContext);
-
-            // just for testing purposes; 
-
-            BookmakerDbContext context = new BookmakerDbContext();
-
-            InitialValues.Initialize(context); 
-
-            Tip tip = context.Tips.First();
-
-            Console.WriteLine("The first tip is {0}", tip.Pair); 
-        }
+       
     }
         
        

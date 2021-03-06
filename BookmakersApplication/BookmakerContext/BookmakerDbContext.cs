@@ -1,4 +1,5 @@
-﻿using BookmakersApplication.Models;
+﻿using BookmakersApplication.Database;
+using BookmakersApplication.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -12,7 +13,10 @@ namespace BookmakersApplication.BookmakerContext
         public DbSet<Tip> Tips { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<Wallet> Wallets { get; set; }
-
+        public BookmakerDbContext():base()
+        {
+            System.Data.Entity.Database.SetInitializer<BookmakerDbContext>(new DatabaseInitializer());
+        }
 
     }
 }
