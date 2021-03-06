@@ -135,6 +135,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TipsAdminController.cs" />
     <Compile Include="Database\InitialValues.cs" />
     <Compile Include="BookmakerContext\BookmakerDbContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -167,6 +168,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jqueryextend.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -192,6 +194,11 @@
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Home\CreateNew.cshtml" />
     <Content Include="Views\Home\Create.cshtml" />
+    <Content Include="Views\TipsAdmin\Create.cshtml" />
+    <Content Include="Views\TipsAdmin\Delete.cshtml" />
+    <Content Include="Views\TipsAdmin\Details.cshtml" />
+    <Content Include="Views\TipsAdmin\Edit.cshtml" />
+    <Content Include="Views\TipsAdmin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
