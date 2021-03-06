@@ -1,0 +1,75 @@
+﻿@model BookmakersApplication.Models.Tip
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tip</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Pairs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pairs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quota1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quota1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quota1X)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quota1X)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuotaX)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuotaX)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuotaX2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuotaX2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quota2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quota2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TopOffer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TopOffer)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
