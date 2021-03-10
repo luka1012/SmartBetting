@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<BookmakersApplication.Models.Wallet>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "WalletState";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>WalletState</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -18,7 +18,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Owner)
         </th>
-
+        <th>
+            @Html.DisplayNameFor(model=>model.Tickets)
+        </th>
         <th></th>
     </tr>
 
@@ -29,6 +31,10 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Owner)
+        </td>
+        <td>
+
+            @Html.DisplayFor(modelItem=>item.Tickets)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id }) |

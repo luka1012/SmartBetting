@@ -131,7 +131,7 @@ namespace BookmakersApplication.Controllers
 
             return View("Index", tips);
         }
-        public ActionResult PairAvailable() { //function for checking 
+        public ActionResult PairAvailable() { //function for checking pairs
 
             var tips = db.Tips.ToList();
             foreach (var test in tips) {
@@ -159,6 +159,7 @@ namespace BookmakersApplication.Controllers
                     tip.Result = Result.AwayWin;
                 }
                         }
+           
             return View("Index", tips);
 
 

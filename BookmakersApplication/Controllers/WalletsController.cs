@@ -127,18 +127,19 @@ namespace BookmakersApplication.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult WalletAvalaible()
+        public ActionResult WalletState()
         {
+            Ticket ticket = new Ticket();
 
-          
-            IEnumerable<Ticket> wallets = db.Tickets.Where(t => t.Stake >= 0).ToList();
-            foreach (var test in wallets) {
-                Decimal value = test.Wallet.Amount - test.Stake;
-
-                
+            var customers = db.Wallets.Where(t => t.Owner =="Owner").ToList();
+            foreach (var test in customers) {
+               
+                test.Amount = test.Amount - ticket.Stake;
+                db.Wallets.AddRange(customers);
+                db.SaveChanges();
             }
            
-            return View(db.Wallets.ToList());
+            return View("Index",customers);
 
 
 

@@ -137,6 +137,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
     <Compile Include="Controllers\TipsAdminController.cs" />
+    <Compile Include="Controllers\TipsUserController.cs" />
     <Compile Include="Controllers\WalletsController.cs" />
     <Compile Include="Database\DatabaseInitializer.cs" />
     <Compile Include="BookmakerContext\BookmakerDbContext.cs" />
@@ -218,6 +219,9 @@
     <Content Include="Views\Tips\Edit.cshtml" />
     <Content Include="Views\Tips\Index.cshtml" />
     <Content Include="Views\TipsAdmin\PairAvailable.cshtml" />
+    <Content Include="Views\TipsUser\Delete.cshtml" />
+    <Content Include="Views\TipsUser\Index.cshtml" />
+    <Content Include="Views\Wallets\WalletState.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
