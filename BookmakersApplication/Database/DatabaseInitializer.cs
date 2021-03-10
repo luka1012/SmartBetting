@@ -10,11 +10,12 @@ namespace BookmakersApplication.Database
 {
     public class DatabaseInitializer : CreateDatabaseIfNotExists<BookmakerDbContext>
     {
+
         protected override void Seed(BookmakerDbContext dbContext)
         {
             base.Seed(dbContext);
             IList<Models.Tip> currentOffers = new List<Tip> {
-             new Tip(){ Pair= "Chelsea-Manchester",TipId=1, IsTopOffer=false, Quota1=1.5,Quota1X=1.3, QuotaX=4, QuotaX2=1.8, Quota2=2.5, Sport="Nogome" },
+             new Tip(){ Pair= "Chelsea-Manchester",TipId=1, IsTopOffer=false, Quota1=1.5,Quota1X=1.3, QuotaX=4, QuotaX2=1.8, Quota2=2.5, Sport="Nogome"},
                 new Tip() {Pair= "Dinamo-Hajduk",TipId=2, IsTopOffer=true, Quota1=1.3,Quota1X=1.15, QuotaX=4, QuotaX2=2.8, Quota2=5,Sport="Nogomet" } ,
                 new Tip() { Pair= "Liverpool-Manchester United",TipId=3, IsTopOffer=false, Quota1=2.3,Quota1X=1.7, QuotaX=3, QuotaX2=1.8, Quota2=2.5,Sport="Nogomet" } ,
                 new Tip() { Pair= "Bayern Munchen-Hoffenheim",TipId=4, IsTopOffer=false, Quota1=1.3,Quota1X=1.5, QuotaX=5, QuotaX2=2, Quota2=5, Sport="Nogomet" } ,
@@ -36,4 +37,4 @@ namespace BookmakersApplication.Database
             dbContext.SaveChanges();
         }
     }
-}
+    }

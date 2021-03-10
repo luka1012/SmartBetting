@@ -1,0 +1,35 @@
+﻿@model BookmakersApplication.Models.SelectedPair
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SelectedPair</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SelectedQuota)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SelectedQuota)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuotaValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuotaValue)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SelectedPairId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

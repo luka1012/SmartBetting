@@ -14,6 +14,9 @@ namespace BookmakersApplication.Models
         public List<SelectedPair> SelectedPairs { get; set; }
 
         public Decimal Stake { get; set; }
+        }
+
+       
 
 
 
@@ -21,7 +24,7 @@ namespace BookmakersApplication.Models
 
     }
 
-    }
+    
 
     
      

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<BookmakersApplication.Models.SelectedPair>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SelectedQuota)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuotaValue)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SelectedQuota)
+            @Html.RadioButtonFor(modelItem => item.SelectedPairId, item.SelectedQuota)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuotaValue)
+        </td>
+       
+           
+       
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SelectedPairId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SelectedPairId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SelectedPairId })
+        </td>
+    </tr>
+}
+
+</table>

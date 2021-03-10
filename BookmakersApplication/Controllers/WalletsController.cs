@@ -11,107 +11,109 @@ using BookmakersApplication.Models;
 
 namespace BookmakersApplication.Controllers
 {
-    public class TipsAdminController : Controller
+    public class WalletsController : Controller
     {
         private BookmakerDbContext db = new BookmakerDbContext();
+        Wallet wl = new Wallet();
+        Ticket tc = new Ticket();
 
-        // GET: TipsAdmin
+        // GET: Wallets
         public ActionResult Index()
         {
-            return View(db.Tips.ToList());
+            return View(db.Wallets.ToList());
         }
 
-        // GET: TipsAdmin/Details/5
+        // GET: Wallets/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tip tip = db.Tips.Find(id);
-            if (tip == null)
+            Wallet wallet = db.Wallets.Find(id);
+            if (wallet == null)
             {
                 return HttpNotFound();
             }
-            return View(tip);
+            return View(wallet);
         }
 
-        // GET: TipsAdmin/Create
+        // GET: Wallets/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: TipsAdmin/Create
+        // POST: Wallets/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TipId,Pair,Quota1,Quota1X,QuotaX,QuotaX2,Quota2,IsTopOffer,Sport,Status,Result")] Tip tip)
+        public ActionResult Create([Bind(Include = "id,Amount,Owner")] Wallet wallet)
         {
             if (ModelState.IsValid)
             {
-                db.Tips.Add(tip);
+                db.Wallets.Add(wallet);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(tip);
+            return View(wallet);
         }
 
-        // GET: TipsAdmin/Edit/5
+        // GET: Wallets/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tip tip = db.Tips.Find(id);
-            if (tip == null)
+            Wallet wallet = db.Wallets.Find(id);
+            if (wallet == null)
             {
                 return HttpNotFound();
             }
-            return View(tip);
+            return View(wallet);
         }
 
-        // POST: TipsAdmin/Edit/5
+        // POST: Wallets/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TipId,Pair,Quota1,Quota1X,QuotaX,QuotaX2,Quota2,IsTopOffer,Sport,Status,Result")] Tip tip)
+        public ActionResult Edit([Bind(Include = "id,Amount,Owner")] Wallet wallet)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tip).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(wallet).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(tip);
+            return View(wallet);
         }
 
-        // GET: TipsAdmin/Delete/5
+        // GET: Wallets/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tip tip = db.Tips.Find(id);
-            if (tip == null)
+            Wallet wallet = db.Wallets.Find(id);
+            if (wallet == null)
             {
                 return HttpNotFound();
             }
-            return View(tip);
+            return View(wallet);
         }
 
-        // POST: TipsAdmin/Delete/5
+        // POST: Wallets/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Tip tip = db.Tips.Find(id);
-            db.Tips.Remove(tip);
+            Wallet wallet = db.Wallets.Find(id);
+            db.Wallets.Remove(wallet);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -125,43 +127,22 @@ namespace BookmakersApplication.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult AvailableTips()
+        public ActionResult WalletAvalaible()
         {
-            var tips = db.Tips.Where(t => t.Status == Status.Available).ToList();
 
-            return View("Index", tips);
-        }
-        public ActionResult PairAvailable() { //function for checking 
+          
+            IEnumerable<Ticket> wallets = db.Tickets.Where(t => t.Stake >= 0).ToList();
+            foreach (var test in wallets) {
+                Decimal value = test.Wallet.Amount - test.Stake;
 
-            var tips = db.Tips.ToList();
-            foreach (var test in tips) {
-                if (test.Status == Status.Finished)
-                    db.Tips.Remove(test);
-                db.SaveChanges();
+                
             }
-            return View("Index",tips);
-        }
-        public ActionResult WinOrLose() {
-            Tip tip = new Tip();
-            var tips = db.SelectedPairs.ToList();
-            foreach (var test in tips) {
-                if (test.SelectedQuota == Quotas.Quota1)
-                {
-                    tip.Result = Result.HomeWin;
-                }
-                else if (test.SelectedQuota == Quotas.QuotaX)
-                {
-
-                    tip.Result = Result.Draw;
-                }
-                else if (test.SelectedQuota == Quotas.Quota2) {
-
-                    tip.Result = Result.AwayWin;
-                }
-                        }
-            return View("Index", tips);
+           
+            return View(db.Wallets.ToList());
 
 
-        }
+
+        }     
+        
     }
 }

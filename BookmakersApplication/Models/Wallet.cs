@@ -12,11 +12,15 @@ namespace BookmakersApplication.Models
     {
         public int id { get; set; }
         [Range(0, double.MaxValue)]
-        public double Amount { get; set; }
+        public Decimal Amount{ get; set; }
         public String Owner { get; set; }
-
+       
         public List<Ticket> Tickets { get; set; }
 
+        public static explicit operator Wallet(decimal v)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 

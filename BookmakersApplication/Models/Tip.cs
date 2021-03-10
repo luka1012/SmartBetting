@@ -24,6 +24,8 @@ namespace BookmakersApplication.Models
         public Status Status { get; set; } = Status.Available; 
         public Result Result { get; set; }
 
+      
+
         
     }
         

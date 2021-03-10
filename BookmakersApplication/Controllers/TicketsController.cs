@@ -11,107 +11,107 @@ using BookmakersApplication.Models;
 
 namespace BookmakersApplication.Controllers
 {
-    public class TipsAdminController : Controller
+    public class TicketsController : Controller
     {
         private BookmakerDbContext db = new BookmakerDbContext();
 
-        // GET: TipsAdmin
+        // GET: Tickets
         public ActionResult Index()
         {
-            return View(db.Tips.ToList());
+            return View(db.Tickets.ToList());
         }
 
-        // GET: TipsAdmin/Details/5
+        // GET: Tickets/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tip tip = db.Tips.Find(id);
-            if (tip == null)
+            Ticket ticket = db.Tickets.Find(id);
+            if (ticket == null)
             {
                 return HttpNotFound();
             }
-            return View(tip);
+            return View(ticket);
         }
 
-        // GET: TipsAdmin/Create
+        // GET: Tickets/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: TipsAdmin/Create
+        // POST: Tickets/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TipId,Pair,Quota1,Quota1X,QuotaX,QuotaX2,Quota2,IsTopOffer,Sport,Status,Result")] Tip tip)
+        public ActionResult Create([Bind(Include = "TicketId,Stake")] Ticket ticket)
         {
             if (ModelState.IsValid)
             {
-                db.Tips.Add(tip);
+                db.Tickets.Add(ticket);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(tip);
+            return View(ticket);
         }
 
-        // GET: TipsAdmin/Edit/5
+        // GET: Tickets/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tip tip = db.Tips.Find(id);
-            if (tip == null)
+            Ticket ticket = db.Tickets.Find(id);
+            if (ticket == null)
             {
                 return HttpNotFound();
             }
-            return View(tip);
+            return View(ticket);
         }
 
-        // POST: TipsAdmin/Edit/5
+        // POST: Tickets/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TipId,Pair,Quota1,Quota1X,QuotaX,QuotaX2,Quota2,IsTopOffer,Sport,Status,Result")] Tip tip)
+        public ActionResult Edit([Bind(Include = "TicketId,Stake")] Ticket ticket)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tip).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(ticket).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(tip);
+            return View(ticket);
         }
 
-        // GET: TipsAdmin/Delete/5
+        // GET: Tickets/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tip tip = db.Tips.Find(id);
-            if (tip == null)
+            Ticket ticket = db.Tickets.Find(id);
+            if (ticket == null)
             {
                 return HttpNotFound();
             }
-            return View(tip);
+            return View(ticket);
         }
 
-        // POST: TipsAdmin/Delete/5
+        // POST: Tickets/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Tip tip = db.Tips.Find(id);
-            db.Tips.Remove(tip);
+            Ticket ticket = db.Tickets.Find(id);
+            db.Tickets.Remove(ticket);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -124,44 +124,6 @@ namespace BookmakersApplication.Controllers
             }
             base.Dispose(disposing);
         }
-
-        public ActionResult AvailableTips()
-        {
-            var tips = db.Tips.Where(t => t.Status == Status.Available).ToList();
-
-            return View("Index", tips);
-        }
-        public ActionResult PairAvailable() { //function for checking 
-
-            var tips = db.Tips.ToList();
-            foreach (var test in tips) {
-                if (test.Status == Status.Finished)
-                    db.Tips.Remove(test);
-                db.SaveChanges();
-            }
-            return View("Index",tips);
-        }
-        public ActionResult WinOrLose() {
-            Tip tip = new Tip();
-            var tips = db.SelectedPairs.ToList();
-            foreach (var test in tips) {
-                if (test.SelectedQuota == Quotas.Quota1)
-                {
-                    tip.Result = Result.HomeWin;
-                }
-                else if (test.SelectedQuota == Quotas.QuotaX)
-                {
-
-                    tip.Result = Result.Draw;
-                }
-                else if (test.SelectedQuota == Quotas.Quota2) {
-
-                    tip.Result = Result.AwayWin;
-                }
-                        }
-            return View("Index", tips);
-
-
-        }
+        
     }
 }

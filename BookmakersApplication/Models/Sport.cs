@@ -14,9 +14,5 @@ namespace BookmakersApplication.Models
 
 
     }
-    public class SportDBContext : DbContext
-    {
-        public System.Data.Entity.DbSet<BookmakersApplication.Models.Sport> Sport { get; set; }
-
-    }
+    
 }
