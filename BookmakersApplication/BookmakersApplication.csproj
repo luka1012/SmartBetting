@@ -61,6 +61,10 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -135,9 +139,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SelectedPairsController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
     <Compile Include="Controllers\TipsAdminController.cs" />
-    <Compile Include="Controllers\TipsUserController.cs" />
+    <Compile Include="Controllers\UserTipsController.cs" />
     <Compile Include="Controllers\WalletsController.cs" />
     <Compile Include="Database\DatabaseInitializer.cs" />
     <Compile Include="BookmakerContext\BookmakerDbContext.cs" />
@@ -219,13 +224,17 @@
     <Content Include="Views\Tips\Edit.cshtml" />
     <Content Include="Views\Tips\Index.cshtml" />
     <Content Include="Views\TipsAdmin\PairAvailable.cshtml" />
-    <Content Include="Views\TipsUser\Delete.cshtml" />
-    <Content Include="Views\TipsUser\Index.cshtml" />
     <Content Include="Views\Wallets\WalletState.cshtml" />
+    <Content Include="Views\Wallets\SelectedTickets.cshtml" />
+    <Content Include="Views\UserTips\Delete.cshtml" />
+    <Content Include="Views\UserTips\Details.cshtml" />
+    <Content Include="Views\UserTips\Edit.cshtml" />
+    <Content Include="Views\UserTips\Index.cshtml" />
+    <Content Include="Views\UserTips\EditorTemplates\View.cshtml" />
+    <Content Include="Views\UserTips\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Migrations\" />
     <Folder Include="Util\" />
   </ItemGroup>
   <ItemGroup>

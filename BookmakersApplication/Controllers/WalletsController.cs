@@ -127,10 +127,18 @@ namespace BookmakersApplication.Controllers
             base.Dispose(disposing);
         }
 
+        public ActionResult SelectedTickets() {
+            var tickets = db.Wallets.ToList();
+
+            return View(tickets);
+
+        }
+
+
         public ActionResult WalletState()
         {
             Ticket ticket = new Ticket();
-
+            
             var customers = db.Wallets.Where(t => t.Owner =="Owner").ToList();
             foreach (var test in customers) {
                

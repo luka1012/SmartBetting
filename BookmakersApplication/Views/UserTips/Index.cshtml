@@ -8,6 +8,10 @@
 <h2>Index</h2>
 
 
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 <table class="table">
     <tr>
         <th>
@@ -42,29 +46,44 @@
         </th>
         <th></th>
     </tr>
+   
+   
 
-@foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
+
+
+
+
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Pair)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Quota1)
+            @Html.RadioButtonFor(modelItem => item.isSelected, item.Quota1)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Quota1X)
+
+            @Html.RadioButtonFor(modelItem => item.isSelected, item.Quota1X)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.QuotaX)
+
+            @Html.RadioButtonFor(modelItem => item.isSelected, item.QuotaX)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.QuotaX2)
+            @Html.RadioButtonFor(modelItem => item.isSelected, item.QuotaX2)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Quota2)
+            @Html.RadioButtonFor(modelItem => item.isSelected, item.Quota2)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.IsTopOffer)
+
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Sport)
@@ -76,10 +95,19 @@
             @Html.DisplayFor(modelItem => item.Result)
         </td>
         <td>
-           
-            @Html.ActionLink("Delete", "Delete", new { id=item.TipId })
+            @using (Html.BeginForm("Create", "UserTips"))
+            {
+                @Html.AntiForgeryToken()
+            @Html.EditorFor(a => item.AllTips)
+            <button type="submit">Save</button>
+        }
+            @Html.ActionLink("Details", "Details", new { id = item.TipId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.TipId })
         </td>
-    </tr>
-}
 
+       
+
+    </tr>
+
+    }
 </table>
