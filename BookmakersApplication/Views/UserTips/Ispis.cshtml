@@ -1,0 +1,88 @@
+﻿@model IEnumerable<BookmakersApplication.Models.Tip>
+
+@{
+    ViewBag.Title = "Ispis";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Ispis</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Pair)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quota1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quota1X)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuotaX)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuotaX2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quota2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsTopOffer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sport)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Result)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pair)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quota1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quota1X)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuotaX)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuotaX2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quota2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsTopOffer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sport)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Result)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.TipId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TipId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TipId })
+        </td>
+    </tr>
+}
+
+</table>

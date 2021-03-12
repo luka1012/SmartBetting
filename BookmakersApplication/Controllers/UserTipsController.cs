@@ -45,12 +45,12 @@ namespace BookmakersApplication.Controllers
         }
 
         // GET: UserTips/Select
-        [HttpGet]
+        
         public ActionResult Create()
         {
-            var vm = new Tip();
-            vm.AllTips = db.Tips.Where(s=>s.isSelected).ToList();
-            return View(vm);
+            var vm = new OptionTip();
+            vm.AllTips = db.Tips.ToList();
+            return View("Index",vm);
         }
 
         // POST: UserInsertTips/Create
@@ -58,7 +58,7 @@ namespace BookmakersApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TipId,Pair,Quota1,Quota1X,QuotaX,QuotaX2,Quota2,IsTopOffer,Sport,Status,Result,IsSelected,AllTips")] Tip tip)
+        public ActionResult Create([Bind(Include = "TipId,Pair,Quota1,Quota1X,QuotaX,QuotaX2,Quota2,IsTopOffer,Sport,Status,Result,AllTips,SelectedItems")] Tip tip)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace BookmakersApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TipId,Pair,Quota1,Quota1X,QuotaX,QuotaX2,Quota2,IsTopOffer,Sport,Status,Result,IsSelected,AllTips")] Tip tip)
+        public ActionResult Edit([Bind(Include = "TipId,Pair,Quota1,Quota1X,QuotaX,QuotaX2,Quota2,IsTopOffer,Sport,Status,Result,AllTips,SelectedItems")] Tip tip)
         {
             if (ModelState.IsValid)
             {
@@ -136,25 +136,45 @@ namespace BookmakersApplication.Controllers
             base.Dispose(disposing);
         }
 
-      
-       
 
-
-
-       /*[HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create()
+        [HttpPost]
+        public ActionResult Ispis(OptionTip model)
         {
-           
-            SelectedPair sp = new SelectedPair();
-            var tip = db.Tips.ToList();
-            foreach (var test in tip) {
-                if (test.isSelected == true)
-                    
-                
+            if (ModelState.IsValid)
+            {
+                foreach (var q in model.AllTips)
+                {
+                    var t = model.SelectedtItems;
+                    model.AllTips = db.Tips.ToList();
+                    // Save the data 
+                }
+                return RedirectToAction("ThankYou"); //PRG Pattern
             }
-            return View();
-        }*/
+            //to do : reload courses and options on model.
+            return View(model);
+        }
+
+
+
+
+
+
+
+
+        /*[HttpPost]
+         [ValidateAntiForgeryToken]
+         public ActionResult Select()
+         {
+
+             SelectedPair sp = new SelectedPair();
+             var tip = db.Tips.ToList();
+             foreach (var test in tip) {
+                 if (test.isSelected == true)
+                     db.Tips.AddRange(tip);
+                 db.SaveChanges();
+             }
+             return View("Index",tip);
+         }*/
 
 
         /*  public ActionResult SelectPair()

@@ -11,7 +11,7 @@ namespace BookmakersApplication.Models
 {
     public class Tip    {
         public int TipId { get; set; }
-         public bool isSelected { get; set; }
+        
         [Required]
         public String Pair { get; set; }
         public double Quota1 { get; set; }
@@ -23,7 +23,16 @@ namespace BookmakersApplication.Models
         public String Sport { get; set; }
         public Status Status { get; set; } = Status.Available; 
         public Result Result { get; set; }
-        public List<Tip> AllTips { get; set; }
+        public List<Tip> Options { get; set; }
+            
+        
+        
     }
-    
+
+    public class OptionTip {
+        [Required]
+        public int? SelectedtItems { set; get; }
+        public List<Tip> AllTips { set; get; }
+
+    }
 }
