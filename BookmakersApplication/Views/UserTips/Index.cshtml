@@ -1,104 +1,58 @@
-﻿@model IEnumerable<BookmakersApplication.Models.Tip>
+﻿@model IList<BookmakersApplication.Models.Tip>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Index</h2>
-
-
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<h2>Today offer</h2>
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Pair)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Quota1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Quota1X)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.QuotaX)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.QuotaX2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Quota2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsTopOffer)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Sport)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Result)
-        </th>
-        <th></th>
-    </tr>
 
 
-   
-        @foreach (var item in Model)
+        @Html.BeginForm("UserTips", "Index"){
+
+        @for (var i = 0; i < Model.Count; i++)
         {
-         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pair)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quota1)
-                @Html.RadioButtonFor(modelItem => item.Quota1, item.Quota1)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quota1X)
-
-                @Html.RadioButtonFor(modelItem =>item.Quota1X,item.Quota1X)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.QuotaX)
-
-                @Html.RadioButtonFor(modelItem => item.QuotaX, item.QuotaX)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.QuotaX2)
-                @Html.RadioButtonFor(modelItem => item.QuotaX2, item.QuotaX2)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quota2)
-                @Html.RadioButtonFor(modelItem => item.Quota2, item.Quota2)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsTopOffer)
-
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sport)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Result)
-            </td>
-            <td>
+            @Html.HiddenFor(x => x[i].TipId)
+            <fieldset>
+                <legend>
+                    @Html.DisplayFor(x => x[i].Pair)
+                </legend>
+                <ul>
+                    <li>
                 
-               
-                @Html.ActionLink("Details", "Details", new { id = item.TipId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.TipId })
-            </td>
-            
+                        <td>Quota1</td>
+                         @Html.HiddenFor(x => x[i].Quota1)
+                        @Html.RadioButtonFor(x => x[i].SelectedtItems, Model[i].Quota1)
+                        @Html.DisplayFor(x => x[i].Quota1)
+                        
+                    </li>
+                    <li>
+                        <td>Quota1X</td>
+                        @Html.RadioButtonFor(x => x[i].SelectedtItems, Model[i].Quota1X)
+                        @Html.DisplayFor(x => x[i].Quota1X)
+                    </li>
+                    <li>
+                        <td>QuotaX</td>
+                        @Html.RadioButtonFor(x => x[i].SelectedtItems, Model[i].QuotaX)
+                        @Html.DisplayFor(x => x[i].QuotaX)
+                        
+                    </li>
+                    <li>
+                        <td>QuotaX2</td>
+                        @Html.RadioButtonFor(x => x[i].SelectedtItems, Model[i].QuotaX2)
+                        @Html.DisplayFor(x => x[i].QuotaX2)
+                    </li>
+                    <li>
+                        <td>Quota2</td>
+                        @Html.RadioButtonFor(x => x[i].SelectedtItems, Model[i].Quota2)
+                        @Html.DisplayFor(x => x[i].Quota2)
+                    </li>
+                </ul>
+            </fieldset>
+        }
 
-        </tr>
+        <button type="submit">OK</button>
         
-    }
+
+    </td>
 </table>

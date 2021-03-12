@@ -1,0 +1,20 @@
+﻿@model List<BookmakersApplication.Models.Tip>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>View</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+
+    <h4>Select a Pair</h4>
+    foreach (var item in Model.Options)
+    {
+        <div> @Html.RadioButtonFor(s => s.SelectedtItems, item.TipId)</div>
+    }
+    <input type="submit" />
+}

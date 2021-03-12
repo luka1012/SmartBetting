@@ -232,12 +232,11 @@
     <Content Include="Views\UserTips\Index.cshtml" />
     <Content Include="Views\UserTips\Create.cshtml" />
     <Content Include="Views\UserTips\Ispis.cshtml" />
-    <Content Include="Views\UserTips\SelectedItems.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Tip.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Util\" />
-    <Folder Include="Views\Shared\EditorTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

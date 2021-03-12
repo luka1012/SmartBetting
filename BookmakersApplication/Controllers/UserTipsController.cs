@@ -48,8 +48,8 @@ namespace BookmakersApplication.Controllers
         
         public ActionResult Create()
         {
-            var vm = new OptionTip();
-            vm.AllTips = db.Tips.ToList();
+            var vm = new Tip();
+            vm.Options = db.Tips.ToList();
             return View("Index",vm);
         }
 
@@ -138,14 +138,14 @@ namespace BookmakersApplication.Controllers
 
 
         [HttpPost]
-        public ActionResult Ispis(OptionTip model)
+        public ActionResult Ispis(Tip model)
         {
             if (ModelState.IsValid)
             {
-                foreach (var q in model.AllTips)
+                foreach (var q in model.Options)
                 {
                     var t = model.SelectedtItems;
-                    model.AllTips = db.Tips.ToList();
+                    model.Options = db.Tips.ToList();
                     // Save the data 
                 }
                 return RedirectToAction("ThankYou"); //PRG Pattern
