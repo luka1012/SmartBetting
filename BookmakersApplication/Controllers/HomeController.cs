@@ -15,7 +15,8 @@ namespace BookmakersApplication.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            ViewBag.Message = "Excellent";
+            return View("Index");
         }
 
         public ActionResult About()

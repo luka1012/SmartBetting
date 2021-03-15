@@ -23,12 +23,12 @@ namespace BookmakersApplication.Models
         public String Sport { get; set; }
         public Status Status { get; set; } = Status.Available;
         public Result Result { get; set; }
-        public List<Tip> Options { get; set; }
         public int? SelectedtItems { set; get; }
-
-   
+        public List<Tip> Options { get; set; }
+      
 
     }
 
+  
    
 }

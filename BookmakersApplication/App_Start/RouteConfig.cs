@@ -18,6 +18,18 @@ namespace BookmakersApplication
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
-        }
+
+            routes.MapRoute(
+            name: "UserTips",
+            url: "{controller}/{action}/{id}",
+            defaults: new {controller="UserTips",action="Index",id=UrlParameter.Optional }
+        );
+            routes.MapRoute(
+            name: "Message", 
+            url: "{controller}/{action}/{id}", 
+            defaults: new { controller = "UserTips", action = "Get", id = UrlParameter.Optional } // Parameter defaults
+             );
+                    
+    }
     }
 }

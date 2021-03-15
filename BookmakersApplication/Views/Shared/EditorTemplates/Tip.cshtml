@@ -12,9 +12,9 @@
     @Html.ValidationSummary()
 
     <h4>Select a Pair</h4>
-    foreach (var item in Model.Options)
+    foreach (var item in Model)
     {
-        <div> @Html.RadioButtonFor(s => s.SelectedtItems, item.TipId)</div>
+        <div> @Html.RadioButtonFor(s =>item.SelectedtItems, item.TipId)</div>
     }
     <input type="submit" />
 }

@@ -231,7 +231,6 @@
     <Content Include="Views\UserTips\Edit.cshtml" />
     <Content Include="Views\UserTips\Index.cshtml" />
     <Content Include="Views\UserTips\Create.cshtml" />
-    <Content Include="Views\UserTips\Ispis.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Tip.cshtml" />
   </ItemGroup>
   <ItemGroup>

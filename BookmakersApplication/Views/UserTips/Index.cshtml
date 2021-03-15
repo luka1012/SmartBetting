@@ -1,58 +1,78 @@
-﻿@model IList<BookmakersApplication.Models.Tip>
+﻿@model  IList<BookmakersApplication.Models.Tip>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h2>Today offer</h2>
-    <tr>
+
+@{ 
+
+    var message = ViewBag.Statusmsg;
+}
 
 
-        @Html.BeginForm("UserTips", "Index"){
 
-        @for (var i = 0; i < Model.Count; i++)
-        {
-            @Html.HiddenFor(x => x[i].TipId)
-            <fieldset>
-                <legend>
-                    @Html.DisplayFor(x => x[i].Pair)
-                </legend>
-                <ul>
-                    <li>
-                
-                        <td>Quota1</td>
-                         @Html.HiddenFor(x => x[i].Quota1)
-                        @Html.RadioButtonFor(x => x[i].SelectedtItems, Model[i].Quota1)
-                        @Html.DisplayFor(x => x[i].Quota1)
-                        
-                    </li>
-                    <li>
-                        <td>Quota1X</td>
-                        @Html.RadioButtonFor(x => x[i].SelectedtItems, Model[i].Quota1X)
-                        @Html.DisplayFor(x => x[i].Quota1X)
-                    </li>
-                    <li>
-                        <td>QuotaX</td>
-                        @Html.RadioButtonFor(x => x[i].SelectedtItems, Model[i].QuotaX)
-                        @Html.DisplayFor(x => x[i].QuotaX)
-                        
-                    </li>
-                    <li>
-                        <td>QuotaX2</td>
-                        @Html.RadioButtonFor(x => x[i].SelectedtItems, Model[i].QuotaX2)
-                        @Html.DisplayFor(x => x[i].QuotaX2)
-                    </li>
-                    <li>
-                        <td>Quota2</td>
-                        @Html.RadioButtonFor(x => x[i].SelectedtItems, Model[i].Quota2)
-                        @Html.DisplayFor(x => x[i].Quota2)
-                    </li>
-                </ul>
-            </fieldset>
-        }
 
-        <button type="submit">OK</button>
+
+@Html.BeginForm("Index", "UserTips", FormMethod.Post){
+@Html.AntiForgeryToken()
+
+@for (var i = 0; i<Model.Count(); i++)
+{
+    @Html.HiddenFor(x =>x[i].TipId)
+    <fieldset>
+        <legend>
+            @Html.DisplayFor(x => x[i].Pair)
+        </legend>
+        <ul>
+            <li>
+
+                <td>Quota1</td>
+                @Html.HiddenFor(x => x[i].Quota1)
+                @Html.RadioButtonFor(x=>x[i].SelectedtItems,Model[i].Quota1)
+                @Html.DisplayFor(x => x[i].Quota1)
+
+            </li>
+            <li>
+                <td>Quota1X</td>
+                @Html.RadioButtonFor(x => x[i].SelectedtItems,Model[i].Quota1X)
+                @Html.DisplayFor(x => x[i].Quota1X)
+            </li>
+            <li>
+                <td>QuotaX</td>
+                @Html.RadioButtonFor(x => x[i].SelectedtItems,Model[i].QuotaX)
+                @Html.DisplayFor(x => x[i].QuotaX)
+
+            </li>
+            <li>
+                <td>QuotaX2</td>
+                @Html.RadioButtonFor(x => x[i].SelectedtItems,Model[i].QuotaX2)
+                @Html.DisplayFor(x => x[i].QuotaX2)
+            </li>
+            <li>
+                <td>Quota2</td>
+                @Html.RadioButtonFor(x => x[i].SelectedtItems,Model[i].Quota2)
+                @Html.DisplayFor(x => x[i].Quota2)
+               
+            </li>
+           
+        </ul>
         
+    </fieldset>
 
-    </td>
-</table>
+
+
+
+}
+
+
+
+
+<div class="span7">
+    
+    <button type="submit" formaction="@Url.Action("Index")" formmethod="post" onclick="return confirm('@ViewBag.Message')" > Save update</button>
+
+
+</div>
+
