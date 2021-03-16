@@ -15,6 +15,10 @@
         <th>
             @Html.DisplayNameFor(model => model.Stake)
         </th>
+        <th>
+            @Html.DisplayNameFor(model=>model.SelectedPairs)
+
+        </th>
         <th></th>
     </tr>
 
@@ -22,6 +26,9 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Stake)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SelectedPairs)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.TicketId }) |

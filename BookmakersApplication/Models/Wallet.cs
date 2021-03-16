@@ -17,10 +17,7 @@ namespace BookmakersApplication.Models
        
         public List<Ticket> Tickets { get; set; }
 
-        public static explicit operator Wallet(decimal v)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 
 

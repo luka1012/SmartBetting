@@ -124,19 +124,21 @@ namespace BookmakersApplication.Controllers
             }
             base.Dispose(disposing);
         }
-        public ActionResult SelectedPairs()
+        public ActionResult SelectingPairs()
         {
 
             //SelectedPair s = new SelectedPair();
             BookmakerDbContext db = new BookmakerDbContext();
             Ticket ticket = new Ticket();
-            ticket.SelectedPairs = db.SelectedPairs.ToList();
-            foreach (var test in ticket.SelectedPairs) {
+            Tip tip = new Tip();
+            SelectedPair sp = new SelectedPair();
+            ticket.SelectedPairs = db.SelectedPairs.Where(t => t.SelectedTip.SelectedtItems == t.SelectedTip.SelectedtItems).ToList();
+           // foreach (var test in ticket.SelectedPairs) {
                 //var winnings = test.QuotaValue * ticket.Stake * 0.95;
 
-            }
+           // }
 
-            return View();
+            return View("Index",ticket);
         }
 
     }

@@ -151,7 +151,19 @@ namespace BookmakersApplication.Controllers
 
 
 
-        }     
+        }
+        public ActionResult AmountOfOwner() {
+            Ticket ticket = new Ticket();
+            Wallet wallet = new Wallet();
+            wallet.Tickets = db.Tickets.Where(t => t.TicketId == t.TicketId).ToList();
+            foreach(var test in wallet.Tickets)
+            {
+                wallet.Amount = wallet.Amount - test.Stake;
+                db.Wallets.Add(wallet);
+
+            }
+            return View("Index", wallet);
+        }
         
     }
 }

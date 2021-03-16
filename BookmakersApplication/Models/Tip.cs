@@ -25,10 +25,10 @@ namespace BookmakersApplication.Models
         public Result Result { get; set; }
         public int? SelectedtItems { set; get; }
         public List<Tip> Options { get; set; }
-      
+
 
     }
 
-  
+    
    
 }

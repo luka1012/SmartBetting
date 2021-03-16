@@ -9,8 +9,8 @@ using System.Web.Mvc;
 using BookmakersApplication.BookmakerContext;
 using BookmakersApplication.Models;
 using System.Net.Http;
-
-
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 
 namespace BookmakersApplication.Controllers
 {
@@ -23,13 +23,14 @@ namespace BookmakersApplication.Controllers
 
 
 
-        public ActionResult Index()
+        /* public ActionResult Index()
+         {
+
+             return View(db.Tips.ToList());
+
+         }*/
+        public ActionResult MyIndex()
         {
-
-            return View(db.Tips.ToList());
-
-        }
-        public ActionResult MyIndex() {
             ViewBag.Msg = ViewBag.Message;
             return View("Index");
         }
@@ -49,13 +50,13 @@ namespace BookmakersApplication.Controllers
         }
 
         // GET: UserTips/Select
-        
-       /*  public ActionResult Create()
-         {
-             var vm = new Tip();
-            vm.Options = GetItems();
-             return View(vm);
-         }*/
+
+        /*  public ActionResult Create()
+          {
+              var vm = new Tip();
+             vm.Options = GetItems();
+              return View(vm);
+          }*/
         /* [HttpGet]
         public ActionResult Create()
         {
@@ -158,52 +159,6 @@ namespace BookmakersApplication.Controllers
         }
 
 
-        /*[HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Index(Tip model)
-        {
-            if (ModelState.IsValid)
-            {
-                model.Options = db.Tips.ToList();
-                foreach (var q in model.Options)
-                {
-                    var t = q.SelectedtItems;
-
-
-                }
-
-                db.Tips.AddRange(model.Options);
-                db.SaveChanges();
-                ViewBag.SuccessMsg = "successfully added";
-                return RedirectToAction("Index");
-            }
-
-            return View(model);*/
-
-
-
-
-
-
-
-
-        /*[HttpPost]
-         [ValidateAntiForgeryToken]
-         public ActionResult Select()
-         {
-
-             SelectedPair sp = new SelectedPair();
-             var tip = db.Tips.ToList();
-             foreach (var test in tip) {
-                 if (test.isSelected == true)
-                     db.Tips.AddRange(tip);
-                 db.SaveChanges();
-             }
-             return View("Index",tip);
-         }*/
-
-
-
         /* [HttpPost]
          public ActionResult Index(Tip model) {
              if (ModelState.IsValid)
@@ -212,36 +167,46 @@ namespace BookmakersApplication.Controllers
 
              }
          }*/
+        
+        public ActionResult Index()
+        {
+
+            var vm = new Tip { Options = GetItems() };
+            vm.Options = GetItems();
+            return View("Index", vm.Options);
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Index([Bind(Include = "TipId,Pair,Quota1,Quota1X,QuotaX,QuotaX2,Quota2,IsTopOffer,Sport,Status,Result,SelectedtItems")] Tip model)
         {
-          
+
             // Tip option = new Tip();
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
+
                 var t = model.SelectedtItems;
 
-                db.Tips.AddRange(model.Options);
+
+                db.Tips.Add(model);
                 db.SaveChanges();
                 return RedirectToAction("MyIndex");
+
             }
+                
 
-
-
-
-            // model.Options = GetItems();
             model.Options = GetItems();
             return View("Index", model.Options.ToList());
+
         }
-    
-           
-        }
-
-
-
+     
     }
+       
+    }
+
+
+
+    
 
     
 
