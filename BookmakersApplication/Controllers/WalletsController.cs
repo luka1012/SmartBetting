@@ -138,12 +138,12 @@ namespace BookmakersApplication.Controllers
         public ActionResult WalletState()
         {
             Ticket ticket = new Ticket();
-            
-            var customers = db.Wallets.Where(t => t.Owner =="Owner").ToList();
+            Wallet wallet = new Wallet();
+            var customers = db.Tickets.Where(t => t.Stake == t.TicketId).ToList();
             foreach (var test in customers) {
                
-                test.Amount = test.Amount - ticket.Stake;
-                db.Wallets.AddRange(customers);
+                test.Wallet.Amount = test.Wallet.Amount - ticket.Stake;
+                db.Wallets.Add(wallet);
                 db.SaveChanges();
             }
            

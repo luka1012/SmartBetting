@@ -13,7 +13,8 @@ namespace BookmakersApplication.Models
 
         public List<SelectedPair> SelectedPairs { get; set; }
 
-        public Decimal Stake { get; set; }
+        public Double Stake { get; set; }
+        public Double Winning { get; set; }
         }
 
        

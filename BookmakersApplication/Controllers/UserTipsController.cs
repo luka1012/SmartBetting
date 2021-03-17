@@ -173,16 +173,16 @@ namespace BookmakersApplication.Controllers
 
             var vm = new Tip { Options = GetItems() };
             vm.Options = GetItems();
-            return View("Index", vm.Options);
+            return View("Index",vm.Options.ToList());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index([Bind(Include = "TipId,Pair,Quota1,Quota1X,QuotaX,QuotaX2,Quota2,IsTopOffer,Sport,Status,Result,SelectedtItems")] Tip model)
+        public ActionResult Post([Bind(Include = "TipId,Pair,Quota1,Quota1X,QuotaX,QuotaX2,Quota2,IsTopOffer,Sport,Status,Result,SelectedtItems")] Tip model)
         {
 
             // Tip option = new Tip();
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
 
                 var t = model.SelectedtItems;
@@ -199,6 +199,7 @@ namespace BookmakersApplication.Controllers
             return View("Index", model.Options.ToList());
 
         }
+      
      
     }
        

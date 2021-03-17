@@ -12,7 +12,7 @@ namespace BookmakersApplication.Models
     {
         public int id { get; set; }
         [Range(0, double.MaxValue)]
-        public Decimal Amount{ get; set; }
+        public Double Amount{ get; set; }
         public String Owner { get; set; }
        
         public List<Ticket> Tickets { get; set; }

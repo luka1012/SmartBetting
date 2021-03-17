@@ -12,9 +12,9 @@
 }
 
 
+<tr>
 
-
-@Html.BeginForm("Index", "UserTips", FormMethod.Post){
+@Html.BeginForm("Index", "UserTips", FormMethod.Post) {
 @Html.AntiForgeryToken()
 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -75,9 +75,12 @@
 
 
 <div class="span7">
+    
 
-    <button type="submit" formaction="@Url.Action("Index")" formmethod="post" onclick="return confirm('@ViewBag.Message')"> SELECT</button>
 
+    <button type="submit" formaction="@Url.Action("Post")" formmethod="post" onclick="return confirm('@ViewBag.Message')"> SELECT</button>
+    
 
 </div>
 
+    </tr>

@@ -130,13 +130,14 @@ namespace BookmakersApplication.Controllers
             //SelectedPair s = new SelectedPair();
             BookmakerDbContext db = new BookmakerDbContext();
             Ticket ticket = new Ticket();
-            Tip tip = new Tip();
+            Wallet wallet = new Wallet();
             SelectedPair sp = new SelectedPair();
-            ticket.SelectedPairs = db.SelectedPairs.Where(t => t.SelectedTip.SelectedtItems == t.SelectedTip.SelectedtItems).ToList();
-           // foreach (var test in ticket.SelectedPairs) {
-                //var winnings = test.QuotaValue * ticket.Stake * 0.95;
+            ticket.SelectedPairs = db.SelectedPairs.Where(t => t.SelectedTip.SelectedtItems ==t.SelectedPairId).ToList();
+            foreach (var test in ticket.SelectedPairs) {
 
-           // }
+                ticket.Winning = ticket.Stake * test.QuotaValue * 0.95;
+
+            }
 
             return View("Index",ticket);
         }
