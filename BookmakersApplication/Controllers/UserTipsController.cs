@@ -11,6 +11,7 @@ using BookmakersApplication.Models;
 using System.Net.Http;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
+using BookmakersApplication.ViewModel;
 
 namespace BookmakersApplication.Controllers
 {
@@ -29,10 +30,10 @@ namespace BookmakersApplication.Controllers
              return View(db.Tips.ToList());
 
          }*/
-        public ActionResult MyIndex()
+        public ActionResult Success()
         {
             ViewBag.Msg = ViewBag.Message;
-            return View("Index");
+            return View("Success");
         }
         // GET: UserInsertTips/Details/5
         public ActionResult Details(int? id)
@@ -171,36 +172,82 @@ namespace BookmakersApplication.Controllers
         public ActionResult Index()
         {
 
-            var vm = new Tip { Options = GetItems() };
-            vm.Options = GetItems();
-            return View("Index",vm.Options.ToList());
+
+            List<Offer> Offers = new List<Offer>();
+
+            var Tips = db.Tips.ToList(); 
+
+            foreach(var Tip in Tips)
+            {
+                Offers.Add(new Offer() { Tip = Tip }); 
+            }
+
+            return View("Index",Offers);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Post([Bind(Include = "TipId,Pair,Quota1,Quota1X,QuotaX,QuotaX2,Quota2,IsTopOffer,Sport,Status,Result,SelectedtItems")] Tip model)
+        public ActionResult Post( IList<Offer> model)
         {
-
+            
             // Tip option = new Tip();
-            if (ModelState.IsValid)
+            if (model.Where(o => o.SelectedQuota != Quotas.None).Count() > 0) // Selected pairs must contain at least one pair with selected quota other than None
             {
+                Ticket ticket = new Ticket();
 
-                var t = model.SelectedtItems;
+                ticket.SelectedPairs = new List<SelectedPair>();
+
+                var offers = model.Where(o => o.SelectedQuota != Quotas.None); 
 
 
-                db.Tips.Add(model);
+                foreach (var t in offers)
+                {
+
+                    ticket.SelectedPairs.Add(new SelectedPair() { SelectedTip = db.Tips.Find(t.Tip.TipId), SelectedQuota = t.SelectedQuota, QuotaValue = getQuotaValue(t.SelectedQuota, t.Tip.TipId) });//TODO:fix hardcoded values
+                }
+
+                db.Tickets.Add(ticket);
                 db.SaveChanges();
                 return RedirectToAction("MyIndex");
 
             }
-                
 
-            model.Options = GetItems();
-            return View("Index", model.Options.ToList());
+
+
+            return RedirectToAction("Index");
 
         }
-      
-     
+
+        private double getQuotaValue(Quotas selectedQuota, int tipId)
+        {
+            var tip = db.Tips.Find(tipId);
+
+            if (tip != null)
+            {
+                switch (selectedQuota)
+                {
+                    case Quotas.Quota1:
+                        return tip.Quota1;
+                    case Quotas.Quota1x:
+                        return tip.Quota1X;
+                    case Quotas.QuotaX:
+                        return tip.QuotaX;
+                    case Quotas.QuotaX2:
+                        return tip.QuotaX2;
+                    case Quotas.Quota2:
+                        return tip.Quota2;
+                    case Quotas.None:
+                        throw new HttpException("A qouta is not selected");
+
+                    default:
+                        throw new HttpException("A qouta is not selected");
+
+                }
+            } else
+            {
+                throw new HttpException("Not Found Exception");
+            }
+        }
     }
        
     }

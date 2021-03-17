@@ -8,7 +8,7 @@ namespace BookmakersApplication.Models
 {
     public enum Quotas 
     {
-        
+        None,
         Quota1,
         Quota1x,
         QuotaX,

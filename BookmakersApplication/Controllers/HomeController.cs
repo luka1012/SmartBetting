@@ -22,7 +22,7 @@ namespace BookmakersApplication.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
+            ViewBag.Message1 = "This application is for betting";
             return View();
         }
 

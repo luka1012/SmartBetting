@@ -1,4 +1,4 @@
-﻿@model  IList<BookmakersApplication.Models.Tip>
+﻿@model  IList<BookmakersApplication.ViewModel.Offer>
 
 @{
     ViewBag.Title = "Index";
@@ -14,73 +14,85 @@
 
 <tr>
 
-@Html.BeginForm("Index", "UserTips", FormMethod.Post) {
-@Html.AntiForgeryToken()
-@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @using (Html.BeginForm("Index", "UserTips", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 
-@for (var i = 0; i < Model.Count(); i++)
-{
-    @Html.HiddenFor(x => x[i].TipId)
-    <fieldset>
-        <legend>
-            @Html.DisplayFor(x => x[i].Pair)
-        </legend>
-        
-        <ul>
+        for (var i = 0; i < Model.Count(); i++)
+        {
+            @Html.HiddenFor(x => x[i].Tip.TipId)
+            @Html.HiddenFor(x => x[i].Tip.Quota1)
+            @Html.HiddenFor(x => x[i].Tip.Quota1X)
+            @Html.HiddenFor(x => x[i].Tip.QuotaX)
+            @Html.HiddenFor(x => x[i].Tip.QuotaX2)
+            @Html.HiddenFor(x => x[i].Tip.Quota2)
+
+
+
+
+
+            <fieldset>
+                <legend>
+                    @Html.DisplayFor(x => x[i].Tip.Pair)
+                </legend>
+
+                <ul>
+                    <li>
+
+            <td>Quota1</td>
+            @Html.RadioButtonFor(x => x[i].SelectedQuota, 1)
+            @Html.DisplayFor(x => x[i].Tip.Quota1)
+
+            </li>
             <li>
-
-                <td>Quota1</td>
-                @Html.HiddenFor(x => x[i].Quota1)
-                @Html.RadioButtonFor(x => x[i].SelectedtItems, Model[i].Quota1)
-                @Html.DisplayFor(x => x[i].Quota1)
+            <td>Quota1X</td>
+            @Html.RadioButtonFor(x => x[i].SelectedQuota, 2)
+            @Html.DisplayFor(x => x[i].Tip.Quota1X)
+            </li>
+            <li>
+            <td>QuotaX</td>
+            @Html.RadioButtonFor(x => x[i].SelectedQuota, 3)
+            @Html.DisplayFor(x => x[i].Tip.QuotaX)
 
             </li>
             <li>
-                <td>Quota1X</td>
-                @Html.RadioButtonFor(x => x[i].SelectedtItems, Model[i].Quota1X)
-                @Html.DisplayFor(x => x[i].Quota1X)
+            <td>QuotaX2</td>
+            @Html.RadioButtonFor(x => x[i].SelectedQuota, 4)
+            @Html.DisplayFor(x => x[i].Tip.QuotaX2)
             </li>
             <li>
-                <td>QuotaX</td>
-                @Html.RadioButtonFor(x => x[i].SelectedtItems, Model[i].QuotaX)
-                @Html.DisplayFor(x => x[i].QuotaX)
-
-            </li>
-            <li>
-                <td>QuotaX2</td>
-                @Html.RadioButtonFor(x => x[i].SelectedtItems, Model[i].QuotaX2)
-                @Html.DisplayFor(x => x[i].QuotaX2)
-            </li>
-            <li>
-                <td>Quota2</td>
-                @Html.RadioButtonFor(x => x[i].SelectedtItems, Model[i].Quota2)
-                @Html.DisplayFor(x => x[i].Quota2)
+            <td>Quota2</td>
+            @Html.RadioButtonFor(x => x[i].SelectedQuota,5)
+            @Html.DisplayFor(x => x[i].Tip.Quota2)
 
             </li>
 
 
 
 
-        </ul>
+            </ul>
 
-    </fieldset>
-
-
-
-
-}
+            </fieldset>
 
 
 
 
-<div class="span7">
-    
+        }
 
 
-    <button type="submit" formaction="@Url.Action("Post")" formmethod="post" onclick="return confirm('@ViewBag.Message')"> SELECT</button>
-    
 
-</div>
 
-    </tr>
+        <div class="span7">
+
+
+
+            <button type="submit" formaction="@Url.Action("Post")" formmethod="post" onclick="return confirm('@ViewBag.Message')"> SELECT</button>
+
+
+        </div>
+
+    }
+
+</tr>
