@@ -23,16 +23,9 @@ namespace BookmakersApplication.Controllers
         private Tip tip = new Tip();
 
 
-
-        /* public ActionResult Index()
-         {
-
-             return View(db.Tips.ToList());
-
-         }*/
         public ActionResult Success()
         {
-            ViewBag.Msg = ViewBag.Message;
+            ViewBag.Msg = "Successfully saved";
             return View("Success");
         }
         // GET: UserInsertTips/Details/5
@@ -50,33 +43,14 @@ namespace BookmakersApplication.Controllers
             return View(tip);
         }
 
-        // GET: UserTips/Select
-
-        /*  public ActionResult Create()
-          {
-              var vm = new Tip();
-             vm.Options = GetItems();
-              return View(vm);
-          }*/
-        /* [HttpGet]
-        public ActionResult Create()
-        {
-            var vm = new OptionTip { Options = GetItems() };
-            vm.Options = GetItems();
-            return View("Index",vm.Options.ToList());
-        }*/
+       
         private List<Tip> GetItems()
         {
             return db.Tips.ToList();
 
         }
 
-
-
-
-
-
-        // POST: UserInsertTips/Create
+        
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -160,14 +134,6 @@ namespace BookmakersApplication.Controllers
         }
 
 
-        /* [HttpPost]
-         public ActionResult Index(Tip model) {
-             if (ModelState.IsValid)
-             {
-                 var t = model.SelectedtItems;
-
-             }
-         }*/
         
         public ActionResult Index()
         {
@@ -208,7 +174,7 @@ namespace BookmakersApplication.Controllers
 
                 db.Tickets.Add(ticket);
                 db.SaveChanges();
-                return RedirectToAction("MyIndex");
+                return RedirectToAction("Success");
 
             }
 
