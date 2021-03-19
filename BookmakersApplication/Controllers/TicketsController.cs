@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using BookmakersApplication.BookmakerContext;
 using BookmakersApplication.Models;
+using BookmakersApplication.ViewModel;
 
 namespace BookmakersApplication.Controllers
 {
@@ -16,10 +17,10 @@ namespace BookmakersApplication.Controllers
         private BookmakerDbContext db = new BookmakerDbContext();
 
         // GET: Tickets
-        public ActionResult Index()
+       /* public ActionResult Index()
         {
             return View(db.Tickets.ToList());
-        }
+        }*/
 
         // GET: Tickets/Details/5
         public ActionResult Details(int? id)
@@ -124,23 +125,40 @@ namespace BookmakersApplication.Controllers
             }
             base.Dispose(disposing);
         }
-        public ActionResult SelectingPairs()
-        {
+        /* public ActionResult SelectingPairs()
+         {
 
-            //SelectedPair s = new SelectedPair();
-            BookmakerDbContext db = new BookmakerDbContext();
-            Ticket ticket = new Ticket();
-            Wallet wallet = new Wallet();
-            SelectedPair sp = new SelectedPair();
-            ticket.SelectedPairs = db.SelectedPairs.Where(t => t.SelectedTip.SelectedtItems ==t.SelectedPairId).ToList();
-            foreach (var test in ticket.SelectedPairs) {
+             //SelectedPair s = new SelectedPair();
+             BookmakerDbContext db = new BookmakerDbContext();
+             Ticket ticket = new Ticket();
+             Wallet wallet = new Wallet();
+             SelectedPair sp = new SelectedPair();
+             ticket.SelectedPairs = db.SelectedPairs.Where(t => t.SelectedTip.SelectedtItems ==t.SelectedPairId).ToList();
+             foreach (var test in ticket.SelectedPairs) {
 
-                ticket.Winning = ticket.Stake * test.QuotaValue * 0.95;
+                 ticket.Winning = ticket.Stake * test.QuotaValue * 0.95;
 
+             }
+
+             return View("Index",ticket);
+         }*/
+
+        public ActionResult Index() {
+            //  SelectedPair sp = new SelectedPair();
+            //Ticket ticket = new Ticket();
+            List<Offer> Offers = new List<Offer>();
+
+            var tickets = db.SelectedPairs.ToList();
+
+            foreach (var Ticket in tickets)
+            {
+                Offers.Add(new Offer { SelectedPair=Ticket});
             }
-
-            return View("Index",ticket);
+         
+            return View("Index",Offers);
         }
+
+    
 
     }
 }
