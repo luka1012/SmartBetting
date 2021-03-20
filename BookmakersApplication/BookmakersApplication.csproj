@@ -233,6 +233,7 @@
     <Content Include="Views\UserTips\Index.cshtml" />
     <Content Include="Views\UserTips\Create.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Tip.cshtml" />
+    <Content Include="Views\UserTips\Success.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

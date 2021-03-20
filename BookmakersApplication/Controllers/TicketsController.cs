@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Dynamic;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -143,22 +144,27 @@ namespace BookmakersApplication.Controllers
              return View("Index",ticket);
          }*/
 
-        public ActionResult Index() {
-            //  SelectedPair sp = new SelectedPair();
+         public ActionResult Index() {
+            SelectedPair sp = new SelectedPair();
             //Ticket ticket = new Ticket();
             List<Offer> Offers = new List<Offer>();
+           
+              var tickets = db.SelectedPairs.ToList();
 
-            var tickets = db.SelectedPairs.ToList();
+              foreach (var Ticket in tickets)
+              {
+                  Offers.Add(new Offer { SelectedPair=Ticket, Ticket=db.Tickets.Find(Ticket.SelectedPairId), Tip=db.Tips.Find(Ticket.SelectedPairId)});
 
-            foreach (var Ticket in tickets)
-            {
-                Offers.Add(new Offer { SelectedPair=Ticket});
-            }
-         
-            return View("Index",Offers);
-        }
 
-    
+              }
+
+     
+            return View("Index", Offers);
+         }
+
+       
+       
+    }
 
     }
-}
+

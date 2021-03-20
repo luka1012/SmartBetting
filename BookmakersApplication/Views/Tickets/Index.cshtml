@@ -12,8 +12,8 @@
 </p>
 
 
-
-@using (Html.BeginForm("Index", "Tickets", FormMethod.Get))
+<tr>
+@using (Html.BeginForm("DeleteConfirmed","Tickets",FormMethod.Post))
 
 {
     @Html.AntiForgeryToken()
@@ -24,40 +24,38 @@
     {
 
         @Html.HiddenFor(x => x[i].Tip.TipId)
-        @Html.HiddenFor(x=>x[i].SelectedPair.SelectedTip.Pair)
+        @Html.HiddenFor(x=>x[i].SelectedPair.SelectedPairId)
+        @Html.HiddenFor(x=>x[i].Ticket.TicketId)
      
-        <fieldset>
-            <legend>
-                @Html.DisplayFor(x => x[i].SelectedPair.SelectedTip.Pair)
+    <fieldset>
+        <legend>
+            @Html.DisplayFor(x => x[i].SelectedPair.SelectedTip.Pair)
+
+        </legend>
+
+        <ul>
 
 
-            </legend>
 
-            <ul>
+            <li>
 
-
-                <li>
-
-                </li>
-                <li>
-
-                    @Html.DisplayFor(x => x[i].SelectedPair)
+                @Html.DisplayFor(x => x[i].SelectedPair.SelectedQuota)
 
 
-                </li>
+            </li>
 
 
 
 
-            </ul>
+        </ul>
 
 
-
-        </fieldset>
+        @Html.ActionLink("Delete", "Delete" )
+    </fieldset>
 
 
 
     }
 }
 
-
+    </tr>

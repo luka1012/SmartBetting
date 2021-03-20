@@ -11,8 +11,8 @@ namespace BookmakersApplication.Models
 
         public Wallet Wallet { get; set; }
 
-        public List<SelectedPair> SelectedPairs { get; set; }
-
+        public List<SelectedPair> SelectedPairs { get; set; } 
+        public SelectedPair SelectedPair { get; set; } 
         public Double Stake { get; set; }
         public Double Winning { get; set; }
         }

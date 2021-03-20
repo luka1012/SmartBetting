@@ -1,4 +1,4 @@
-﻿@model BookmakersApplication.Models.Ticket
+﻿@model BookmakersApplication.ViewModel.Offer
 
 @{
     ViewBag.Title = "Delete";
@@ -12,12 +12,15 @@
     <h4>Ticket</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
+      @*  <dt>
             @Html.DisplayNameFor(model => model.Stake)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Stake)
+        </dd>*@
+        <dd>
+            @Html.DisplayFor(model=>model.SelectedPair.SelectedQuota)
         </dd>
 
     </dl>

@@ -29,7 +29,18 @@ namespace BookmakersApplication
             url: "{controller}/{action}/{id}", 
             defaults: new { controller = "UserTips", action = "Get", id = UrlParameter.Optional } // Parameter defaults
              );
-                    
-    }
+            routes.MapRoute(
+           name: "Tickets",
+           url: "{controller}/{action}/{id}",
+           defaults: new { controller = "Tickets", action = "Index", id = UrlParameter.Optional } // Parameter defaults
+            );
+
+            routes.MapRoute(
+          name: "TicketsforDelete",
+          url: "{controller}/{action}/{id}",
+          defaults: new { controller = "Tickets", action = "DeleteConfirmed", id = UrlParameter.Optional } // Parameter defaults
+           );
+
+        }
     }
 }

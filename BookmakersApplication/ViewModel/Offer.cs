@@ -12,5 +12,7 @@ namespace BookmakersApplication.ViewModel
         public Quotas SelectedQuota { get; set; } = Quotas.None;
 
         public Tip Tip { get; set; }
+        public SelectedPair SelectedPair { get; set; }
+        public Ticket Ticket { get; set; }
     }
 }
