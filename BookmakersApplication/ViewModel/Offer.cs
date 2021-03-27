@@ -14,5 +14,6 @@ namespace BookmakersApplication.ViewModel
         public Tip Tip { get; set; }
         public SelectedPair SelectedPair { get; set; }
         public Ticket Ticket { get; set; }
+       
     }
 }

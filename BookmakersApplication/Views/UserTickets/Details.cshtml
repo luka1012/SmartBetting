@@ -1,0 +1,57 @@
+﻿@model BookmakersApplication.Models.Ticket
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Ticket</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Stake)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stake)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Winning)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Winning)
+        </dd>
+
+       
+       <h3>
+           Selected pairs
+       </h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Pair</th>
+                    <th>Selected Quota</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach( var pair in Model.SelectedPairs)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => pair.SelectedTip.Pair)</td>
+                        <td>@Html.DisplayFor(modelItem => pair.SelectedQuota) </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TicketId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -142,6 +142,7 @@
     <Compile Include="Controllers\SelectedPairsController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
     <Compile Include="Controllers\TipsAdminController.cs" />
+    <Compile Include="Controllers\UserTicketsController.cs" />
     <Compile Include="Controllers\UserTipsController.cs" />
     <Compile Include="Controllers\WalletsController.cs" />
     <Compile Include="Database\DatabaseInitializer.cs" />
@@ -234,6 +235,11 @@
     <Content Include="Views\UserTips\Create.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Tip.cshtml" />
     <Content Include="Views\UserTips\Success.cshtml" />
+    <Content Include="Views\UserTickets\Create.cshtml" />
+    <Content Include="Views\UserTickets\Delete.cshtml" />
+    <Content Include="Views\UserTickets\Details.cshtml" />
+    <Content Include="Views\UserTickets\Edit.cshtml" />
+    <Content Include="Views\UserTickets\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

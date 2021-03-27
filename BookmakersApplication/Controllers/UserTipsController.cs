@@ -169,7 +169,7 @@ namespace BookmakersApplication.Controllers
                 foreach (var t in offers)
                 {
                     
-                    ticket.SelectedPairs.Add(new SelectedPair() { SelectedTip = db.Tips.Find(t.Tip.TipId), SelectedQuota = t.SelectedQuota, QuotaValue = getQuotaValue(t.SelectedQuota, t.Tip.TipId) });
+                    ticket.SelectedPairs.Add(new SelectedPair() { SelectedTip = db.Tips.Find(t.Tip.TipId), SelectedQuota = t.SelectedQuota, QuotaValue = getQuotaValue(t.SelectedQuota, t.Tip.TipId)});
                 }
 
                 db.Tickets.Add(ticket);
