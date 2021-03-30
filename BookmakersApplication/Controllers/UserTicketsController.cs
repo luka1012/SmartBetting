@@ -21,7 +21,12 @@ namespace BookmakersApplication.Controllers
             return View(db.Tickets.Include(x => x.SelectedPairs).ToList());
         }
 
-        // GET: UserTickets/Details/5
+        /*public ActionResult Success() {
+            var ticket = db.Tickets.Include(x => x.SelectedPairs);
+            return View("Details",ticket);
+        }*/
+     
+      // GET: UserTickets/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)

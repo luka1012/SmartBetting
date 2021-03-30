@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
@@ -12,7 +13,8 @@ namespace BookmakersApplication.Models
 
         public Wallet Wallet { get; set; }
 
-        public List<SelectedPair> SelectedPairs { get; set; } 
+        public List<SelectedPair> SelectedPairs { get; set; }
+        [Range(0, double.MaxValue)]
         public Double Stake { get; set; }
         public Double GetWinning() {
 

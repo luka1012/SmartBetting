@@ -5,11 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Your Tickets</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
@@ -24,10 +22,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Stake)
+            @Html.DisplayFor(modelItem => item.Stake)<text> kn </text>
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Winning)
+            @Html.DisplayFor(modelItem => item.Winning) <text> kn </text>
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.TicketId }) |
