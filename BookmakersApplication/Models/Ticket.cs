@@ -22,9 +22,9 @@ namespace BookmakersApplication.Models
             {
                 return 0; 
             }
-            double quotaSum = 0;
+            double quotaSum = 1;
             foreach (var selectedPair in SelectedPairs) {
-                quotaSum += selectedPair.QuotaValue;
+                quotaSum *= selectedPair.QuotaValue;
             }
             //calculating potential winning from stake and final quota of ticket
             double winning = this.Stake * 0.95 * quotaSum;

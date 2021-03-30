@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using BookmakersApplication.BookmakerContext;
 using BookmakersApplication.Models;
+using BookmakersApplication.ViewModel;
 
 namespace BookmakersApplication.Controllers
 {
@@ -21,10 +22,22 @@ namespace BookmakersApplication.Controllers
             return View(db.Tickets.Include(x => x.SelectedPairs).ToList());
         }
 
-        /*public ActionResult Success() {
-            var ticket = db.Tickets.Include(x => x.SelectedPairs);
-            return View("Details",ticket);
-        }*/
+      public ActionResult Success(int id)
+        {
+            Ticket ticket = db.Tickets.Find(id);
+            List<SelectedPair> selectedPairs = db.SelectedPairs.Where(p => p.Ticket.TicketId == id).Include(x => x.SelectedTip).ToList();
+
+            ticket.SelectedPairs = selectedPairs;
+            if (ticket == null)
+            {
+                return HttpNotFound();
+            }
+            return View("Success",ticket);
+            
+            
+
+            
+        }
      
       // GET: UserTickets/Details/5
         public ActionResult Details(int? id)
@@ -98,7 +111,7 @@ namespace BookmakersApplication.Controllers
             {
                 db.Entry(ticket).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Success",new { id=ticket.TicketId});
             }
             return View(ticket);
         }

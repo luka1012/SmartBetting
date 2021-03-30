@@ -16,7 +16,9 @@
         <th>
             Winning
         </th>
-        <th></th>
+        <th>
+            TicketId
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -27,6 +29,10 @@
         <td>
             @Html.DisplayFor(modelItem => item.Winning) <text> kn </text>
         </td>
+        <td>
+            @Html.DisplayFor(modelItem=>item.TicketId)
+        </td>
+      
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.TicketId }) |
             @Html.ActionLink("Details", "Details", new { id=item.TicketId }) |
