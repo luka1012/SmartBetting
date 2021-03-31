@@ -14,16 +14,25 @@ namespace BookmakersApplication.Models
 
         [Required]
         public String Pair { get; set; }
+        
         public double Quota1 { get; set; }
+
         public double Quota1X { get; set; }
+
+       
         public double QuotaX { get; set; }
+
+       
         public double QuotaX2 { get; set; }
+
+        
         public double Quota2 { get; set; }
+
         public Boolean IsTopOffer { get; set; } = false;
         public String Sport { get; set; }
         public Status Status { get; set; } = Status.Available;
         public Result Result { get; set; }
-        public int? SelectedtItems { set; get; }
+      
        
 
 

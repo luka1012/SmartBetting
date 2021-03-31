@@ -5,18 +5,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Your Ticket</h2>
 
 <div>
     <h4>Ticket</h4>
     <hr />
     <dl class="dl-horizontal">
-       <dt>
+        <dt>
             @Html.DisplayNameFor(model => model.Stake)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Stake) <text> kn </text>
+            @Html.DisplayFor(model => model.Stake)  <text> kn </text>
         </dd>
 
         <dt>
@@ -24,13 +24,13 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Winning) <text> kn </text>
+            @Html.DisplayFor(model => model.Winning)<text> kn </text>
         </dd>
-           
-       
-       <h3>
-           Selected pairs
-       </h3>
+
+
+        <h3>
+            Selected pairs
+        </h3>
         <table>
             <thead>
                 <tr>
@@ -39,14 +39,14 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach( var pair in Model.SelectedPairs)
+                @foreach (var pair in Model.SelectedPairs)
                 {
                     <tr>
                         <td>@Html.DisplayFor(modelItem => pair.SelectedTip.Pair)</td>
-                       
+
                         <td class="col-md-10">@Html.DisplayFor(modelItem => pair.SelectedQuota) </td>
 
-                        
+
                     </tr>
                 }
             </tbody>

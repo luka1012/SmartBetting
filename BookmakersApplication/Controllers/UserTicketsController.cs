@@ -119,11 +119,17 @@ namespace BookmakersApplication.Controllers
         // GET: UserTickets/Delete/5
         public ActionResult Delete(int? id)
         {
+            Ticket ticket = db.Tickets.Find(id);
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ticket ticket = db.Tickets.Find(id);
+            List<SelectedPair> selectedPairs = db.SelectedPairs.Where(p => p.Ticket.TicketId == id).Include(x => x.SelectedTip).ToList();
+
+            ticket.SelectedPairs = selectedPairs;
+            
+           
+           
             if (ticket == null)
             {
                 return HttpNotFound();

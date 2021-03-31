@@ -20,7 +20,7 @@ namespace BookmakersApplication.Controllers
         // GET: Wallets
         public ActionResult Index()
         {
-            return View(db.Wallets.ToList());
+            return View(db.Wallets.Include(x=>x.Tickets).ToList());
         }
 
         // GET: Wallets/Details/5
@@ -31,6 +31,8 @@ namespace BookmakersApplication.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Wallet wallet = db.Wallets.Find(id);
+            List<Ticket> Ticket = db.Tickets.Where(p => p.TicketId == id).ToList();
+            wallet.Tickets = Ticket;
             if (wallet == null)
             {
                 return HttpNotFound();
@@ -69,6 +71,8 @@ namespace BookmakersApplication.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Wallet wallet = db.Wallets.Find(id);
+            List<Ticket> Ticket = db.Tickets.Where(p => p.TicketId == id).ToList();
+            wallet.Tickets = Ticket;
             if (wallet == null)
             {
                 return HttpNotFound();
@@ -81,7 +85,7 @@ namespace BookmakersApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,Amount,Owner")] Wallet wallet)
+        public ActionResult Edit([Bind(Include = "id,Amount,Owner,Tickets")] Wallet wallet)
         {
             if (ModelState.IsValid)
             {
@@ -127,43 +131,9 @@ namespace BookmakersApplication.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult SelectedTickets() {
-            var tickets = db.Wallets.ToList();
-
-            return View(tickets);
-
-        }
 
 
-        public ActionResult WalletState()
-        {
-            Ticket ticket = new Ticket();
-            Wallet wallet = new Wallet();
-            var customers = db.Tickets.Where(t => t.Stake == t.TicketId).ToList();
-            foreach (var test in customers) {
-               
-                test.Wallet.Amount = test.Wallet.Amount - ticket.Stake;
-                db.Wallets.Add(wallet);
-                db.SaveChanges();
-            }
-           
-            return View("Index",customers);
-
-
-
-        }
-        public ActionResult AmountOfOwner() {
-            Ticket ticket = new Ticket();
-            Wallet wallet = new Wallet();
-            wallet.Tickets = db.Tickets.Where(t => t.TicketId == t.TicketId).ToList();
-            foreach(var test in wallet.Tickets)
-            {
-                wallet.Amount = wallet.Amount - test.Stake;
-                db.Wallets.Add(wallet);
-
-            }
-            return View("Index", wallet);
-        }
+   
         
     }
 }

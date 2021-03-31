@@ -26,6 +26,34 @@
         <dd>
             @Html.DisplayFor(model => model.Owner)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model=>model.NewAmount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model=>model.NewAmount)
+        </dd>
+        <h3> Owners  </h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Stake</th>
+                    <th class="col-md-10"> TicketId</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var pair in Model.Tickets)
+                {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => pair.Stake)  <text> kn </text>   </td>
+
+                   
+                    <td class="col-md-5">@Html.DisplayFor(modelItem => pair.TicketId)</td>
+                    <td>@Html.DisplayFor(modelItem=>pair.Wallet.NewAmount)</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+
 
     </dl>
 </div>
